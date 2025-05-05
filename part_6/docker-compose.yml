@@ -1,0 +1,14 @@
+services:
+  myserver:
+    build: .
+    image: myserver:Part6
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+
+  proxy:
+    build: ./nginx
+    image: proxy_server:Part6
+    ports:
+      - 80:8080
+    depends_on:
+      - myserver
